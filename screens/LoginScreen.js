@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native'
 import { auth } from '../firebase'
+import { Image } from 'react-native';
 
 
 const LoginScreen = () => {
@@ -41,10 +42,14 @@ const LoginScreen = () => {
   }
 
   return (
+    <ImageBackground source={require('./bgLogin.png')} style={styles.background}>
     <KeyboardAvoidingView
+
       style={styles.container}
       behavior="padding"
     >
+         <Image source={require('./logo.png')} style={styles.logo} />
+         <View style={styles.overlay}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Email"
@@ -59,6 +64,7 @@ const LoginScreen = () => {
           style={styles.input}
           secureTextEntry
         />
+        </View>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -79,27 +85,53 @@ const LoginScreen = () => {
       
 
     </KeyboardAvoidingView>
+    </ImageBackground>
     
   )
 }
 export default LoginScreen
 const styles = StyleSheet.create({
+    overlay: {
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderRadius: 25,
+        paddingVertical: 30,
+        paddingHorizontal: 15,
+        width: '80%',
+        marginTop: 1,
+        alignItems: 'center',
+      },
+    logo: {
+        width: 150,
+        height: 150,
+        resizeMode: 'contain',
+        marginBottom: 20,
+       
+      },
+    background: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+        
+        
+      },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     
+    
   },
   inputContainer: {
-    width: '80%'
+    width: '90%',
     
   },
   input: {
     backgroundColor: 'white',
     paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingVertical: 20,
     borderRadius: 10,
     marginTop: 5,
+   
     
     
   },
@@ -109,18 +141,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 40,
     
+    
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#23480C',
     width: '100%',
     padding: 15,
-    borderRadius: 10,
+    borderRadius: 177,
     alignItems: 'center',
+    
   },
   buttonOutline: {
     backgroundColor: 'white',
     marginTop: 5,
-    borderColor: '#0782F9',
+    borderColor: '#23480C',
     borderWidth: 2,
   },
   buttonText: {
@@ -129,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonOutlineText: {
-    color: '#0782F9',
+    color: '#23480C',
     fontWeight: '700',
     fontSize: 16,
   },
