@@ -80,6 +80,12 @@ const LoginScreen = () => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={()=>{}}
+          style={styles.buttonPhone}
+        >
+          <Text style={styles.buttonText}>Login With Phone Number</Text>
+        </TouchableOpacity>
         
       </View>
       
@@ -143,12 +149,24 @@ const styles = StyleSheet.create({
     
     
   },
+  buttonPhone: {
+    backgroundColor: '#0D375A',
+    width: '100%',
+    padding: 15,
+    borderRadius: 177,
+    alignItems: 'center',
+    marginTop: 20,
+    opacity:0.90,
+    
+  },
   button: {
     backgroundColor: '#23480C',
     width: '100%',
     padding: 15,
     borderRadius: 177,
     alignItems: 'center',
+    marginTop: 5,
+    opacity:0.95,
     
   },
   buttonOutline: {
