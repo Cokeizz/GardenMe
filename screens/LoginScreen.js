@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     
   },
   buttonContainer: {
-    width: '60%',
+    width: '70%',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 40,
