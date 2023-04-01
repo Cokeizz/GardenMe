@@ -2,7 +2,8 @@
 // v9 compat packages are API compatible with v8 code
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import "firebase/database";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,7 +26,7 @@ if (firebase.apps.length === 0) {
 } else {
   app = firebase.app()
 }
+const auth = firebase.auth();
+const db = firebase.database().ref("/corona");
 
-const auth = firebase.auth()
-
-export { auth };
+export { auth, db };
