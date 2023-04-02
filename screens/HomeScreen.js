@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-  View,
-  FlatList,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { auth } from '../firebase';
-import { Card } from 'react-native-paper';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, ImageBackground, ScrollView, Image, TextInput, View, FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/core'
+import { auth } from '../firebase'
+import { getAuth } from 'firebase/auth';
+import { Card } from 'react-native-paper'
+
 
 const HomeScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
+  const [user, setUser] = React.useState(null);
 
   const handleSignOut = () => {
     auth
       .signOut()
       .then(() => {
-        navigation.replace('Login');
+        navigation.replace('Login')
       })
-      .catch((error) => alert(error.message));
-  };
-  let userName = 'Login As : ' + auth.currentUser?.email;
+      .catch(error => alert(error.message))
+  }
+
+  function CurrentUser() {
+    if (auth.currentUser?.email == null) {
+      let userPhone = "Login As : " + auth.currentUser?.phoneNumber;
+      return userPhone;
+    }
+    else if (auth.currentUser?.phoneNumber == null) {
+      let userName = "Login As : " + auth.currentUser?.email;
+      return userName
+    }
+  }
 
   const [data, setData] = useState([]);
 
@@ -57,8 +62,8 @@ const HomeScreen = () => {
             style={styles.buttonImage}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={styles.usernameLabel}>
-          <Text>{userName}</Text>
+        <TouchableOpacity onPress={() => { }} style={styles.usernameLabel}>
+          <Text>{CurrentUser()}</Text>
         </TouchableOpacity>
         <FlatList
           data={data}
@@ -103,7 +108,7 @@ const styles = StyleSheet.create({
     marginBottom: -60, // Change this to reduce the space between each card
     marginTop: 10
   },
-  
+
   usernameLabel: {
     backgroundColor: 'white',
     height: 45,
@@ -113,5 +118,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
   },
-  
+
 });
